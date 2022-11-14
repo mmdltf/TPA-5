@@ -1,4 +1,11 @@
-import { HAPUS_SEMUA, HAPUS_TODO, TAMBAHKAN_TODO, EDIT_TASK, editTask } from "../action/action";
+import {
+  HAPUS_SEMUA,
+  HAPUS_TODO,
+  TAMBAHKAN_TODO,
+  EDIT_TASK,
+  editTask,
+  COMPLETE_TASK,
+} from "../action/action";
 const initialstate = {
   data: [],
 };
@@ -17,37 +24,46 @@ function todoreducer(state = initialstate, action) {
         data: [...state.data],
       };
     case EDIT_TASK:
-      state.data[action.id] = action.payload
-
-      // const editTaskInput = state.data((todo)=>{
-      //   if(todo.id === action.id ){
-      //      return {
-      //       ...todo,
-      //       ...editTask
-      //      }
-      //   }
-      //   return todo;
-
-      // })
-      console.log(state.data);
+      const edittodo = state.data.map((item) => {
+        console.log(action.payload.id);
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            title: action.payload.value,
+          };
+        }
+        return item;
+      });
+      console.log(edittodo);
       return {
-        data: state.data
-      }
-      
-     
+        data: edittodo,
+      };
 
-      
-    case HAPUS_SEMUA: 
+    case COMPLETE_TASK:
+      const completetodo = state.data.map((item) => {
+        if (item.id === action.payload) {
+          return {
+            ...item,
+            status: !item.status,
+          };
+        }
+        return item;
+      });
+      console.log(completetodo);
+      return {
+        data: completetodo,
+      };
+
+    case HAPUS_SEMUA:
       const hapusfilter = state.data.findIndex(
         (item) => item === action.payload
-      )
-      const hapusfilterloop = state.data.splice (hapusfilter)
+      );
+      const hapusfilterloop = state.data.splice(hapusfilter);
       return {
-        data: []
-      }
+        data: [],
+      };
     default:
       return state;
   }
 }
 export default todoreducer;
-

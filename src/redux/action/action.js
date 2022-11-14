@@ -3,6 +3,7 @@ export const HAPUS_TODO = "HAPUS_TODO"
 export const FILTER_TODO = "FILTER_TODO"
 export const HAPUS_SEMUA = "HAPUS_SEMUA"
 export const EDIT_TASK = "EDIT_TASK"
+export const COMPLETE_TASK = "COMPLETE_TASK"
 export const tambahkanTodo = (todo ) => {  
     return {
         
@@ -35,7 +36,16 @@ export const filterTodo = () => {
 export const editTask =(id,payload) => {
     return{
         type : EDIT_TASK,
-        id, payload
+        payload: {
+            id:id, value:payload
+        }
 
+    }
+}
+
+export const completeTask = (id) => {    
+    return {
+        type : COMPLETE_TASK,
+        payload: id
     }
 }
