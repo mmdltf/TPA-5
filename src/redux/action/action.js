@@ -26,12 +26,7 @@ return{
 }
 }
 
-export const filterTodo = () => {
-    return {
-        type: FILTER_TODO,
 
-    }
-} 
 
 export const editTask =(id,payload) => {
     return{

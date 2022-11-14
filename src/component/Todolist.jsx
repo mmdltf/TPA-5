@@ -11,15 +11,13 @@ import {
   MDBModalDialog,
   MDBModalContent,
   MDBModalHeader,
-  MDBInput,
   MDBModalFooter,
 } from "mdb-react-ui-kit";
 
 const Todolist = () => {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
-  const [editInput,setEditinput] = useState('')
-  const [isEdit, setIsEdit] = useState(false);
+  const [editInput, setEditinput] = useState("");
   const [basicModal, setBasicModal] = useState(false);
   const munculPopup = () => setBasicModal(!basicModal);
   const todosdata = useSelector((state) => state.todo.data);
@@ -35,26 +33,15 @@ const Todolist = () => {
     );
     console.log(input);
   };
-  const EditData = (e,id ,payload) =>{
-    console.log('tes')
+  const EditData = (e, id, payload) => {
+    console.log("tes");
     e.preventDefault();
-    dispatch(editTask(id, payload))
-  }
+    dispatch(editTask(id, payload));
+  };
   const Ubahdata = (e) => {
     setInput(e.target.value);
-
   };
 
-  // const Editdata = (id, item) => {
-  //   setIsEdit(!isEdit);
-  //   const dataBaru = todosdata.map((item) => {
-  //     if (item === id) {
-  //       item.isEdit = !item.isEdit;
-  //     }
-  //     return item;
-  //   });
-  //   return { todosdata: dataBaru };
-  // };
   console.log(todosdata);
   return (
     <div className="Formdata text-center">
@@ -73,7 +60,7 @@ const Todolist = () => {
       >
         {" "}
       </MDBBtn>
-      {/* <button onClick={()=> dispatch(editTask()) }>edit</button>  */}
+
       {todosdata.map((item, index) => (
         <MDBCard key={index} className="mx-5 d-flex flex-wrap">
           {item.status ? <del>{item.title}</del> : item.title}
@@ -98,8 +85,10 @@ const Todolist = () => {
                   ></MDBBtn>
                 </MDBModalHeader>
 
-
-                <form onSubmit={(e) => EditData(e, item.id)} className="Formdatalengkap text-center">
+                <form
+                  onSubmit={(e) => EditData(e, item.id)}
+                  className="Formdatalengkap text-center"
+                >
                   <input
                     value={editInput}
                     onChange={(e) => setEditinput(e.target.value)}
@@ -108,10 +97,12 @@ const Todolist = () => {
                   />
 
                   <br></br>
-                  
                 </form>
                 <MDBModalFooter>
-                  <MDBBtn color="warning" onClick={(e) => EditData(e, item.id, editInput)}>
+                  <MDBBtn
+                    color="warning"
+                    onClick={(e) => EditData(e, item.id, editInput)}
+                  >
                     Edit todo
                   </MDBBtn>
                 </MDBModalFooter>
