@@ -44,25 +44,38 @@ const Todolist = () => {
 
   console.log(todosdata);
   return (
-    <div className="Formdata text-center">
-      <div className="d-flex"></div>
-      <form onSubmit={Tambah} className="Formdatalengkap text-center">
-        <input value={input} onChange={Ubahdata} type="text" name="inputtodo" />
+    <div className="Formdata  ">
+      <div className="d-flex justify-content-center">
+        <form onSubmit={Tambah} className="Formdatalengkap ">
+          <input
+            value={input}
+            className="mx-3 "
+            onChange={Ubahdata}
+            type="text"
+            name="inputtodo"
+          />
 
-        <br></br>
-        <MDBBtn className="me-1 fas fa-plus " color="warning"></MDBBtn>
-      </form>
+          {/* button tambah */}
+          <MDBBtn
+            className="me-1 fas fa-plus "
+            size="lg"
+            color="warning"
+          ></MDBBtn>
+        </form>
+        {/* button hapus */}
+        <MDBBtn
+          className="me-1 far fa-trash-alt mx-1  "
+          color="warning"
+          size="sm"
+          onClick={() => dispatch(hapusSemua())}
+        >
+          {" "}
+        </MDBBtn>
+      </div>
 
-      <MDBBtn
-        className="me-1 far fa-trash-alt "
-        color="warning"
-        onClick={() => dispatch(hapusSemua())}
-      >
-        {" "}
-      </MDBBtn>
-
-      {todosdata.map((item, index) => (
-        <MDBCard key={index} className="mx-5 d-flex flex-wrap">
+      <div className="d-flex justify-content-center flex-wrap mt-5 mb-5 pb-5">
+        {todosdata.map((item, index) => (
+        <MDBCard key={index} className="mx-5 d-inline-flex p-4   ">
           {item.status ? <del>{item.title}</del> : item.title}
 
           <MDBBtn
@@ -70,8 +83,16 @@ const Todolist = () => {
             onClick={() => dispatch(hapuskanTodo(item))}
           ></MDBBtn>
 
-          <MDBBtn className="fas fa-edit" onClick={munculPopup}></MDBBtn>
-          <MDBBtn className="" onClick={() => dispatch(completeTask(item.id))}>
+          <MDBBtn
+            className="fas fa-edit"
+            size="sm"
+            onClick={munculPopup}
+          ></MDBBtn>
+          <MDBBtn
+            className=""
+            size="sm"
+            onClick={() => dispatch(completeTask(item.id))}
+          >
             Complete
           </MDBBtn>
           <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
@@ -81,6 +102,7 @@ const Todolist = () => {
                   <MDBBtn
                     className="btn-close"
                     color="none"
+                    size="sm"
                     onClick={munculPopup}
                   ></MDBBtn>
                 </MDBModalHeader>
@@ -101,16 +123,23 @@ const Todolist = () => {
                 <MDBModalFooter>
                   <MDBBtn
                     color="warning"
+                    size="sm"
                     onClick={(e) => EditData(e, item.id, editInput)}
                   >
                     Edit todo
+                  </MDBBtn>
+                  <MDBBtn color="warning" onClick={munculPopup} size="sm">
+                    Close
                   </MDBBtn>
                 </MDBModalFooter>
               </MDBModalContent>
             </MDBModalDialog>
           </MDBModal>
         </MDBCard>
-      ))}
+         ))}
+      </div>
+      
+     
     </div>
   );
 };
