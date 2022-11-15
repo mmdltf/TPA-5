@@ -73,34 +73,45 @@ const Todolist = () => {
         </MDBBtn>
       </div>
 
-      <div className="d-flex justify-content-center flex-wrap mt-5 mb-5 pb-5">
+      <div className="d-flex mx-6 my-6 px-5 flex-wrap mt-5
+        ">
         {todosdata.map((item, index) => (
-        <MDBCard key={index} className="mx-5 d-inline-flex p-4   ">
+          <div style={{
+            animation:'ease-in'
+          }} >
+            <MDBCard key={index} className=" d-inline-flex flex-wrap p-5    ">
           {item.status ? <del>{item.title}</del> : item.title}
-
-          <MDBBtn
-            className="fas fa-trash-alt"
+          <div className="d-flex mt-5 mb-1">
+            <MDBBtn
+            className="fas fa-trash-alt d-flex justify-content-center"
+            id="btncheck"
+            color="warning"
             onClick={() => dispatch(hapuskanTodo(item))}
           ></MDBBtn>
 
           <MDBBtn
-            className="fas fa-edit"
-            size="sm"
+            className="fas fa-edit d-flex justify-content-center"
+            id="btncheck"
+            color="info"
             onClick={munculPopup}
           ></MDBBtn>
           <MDBBtn
-            className=""
-            size="sm"
+            className="fas fa-check d-flex justify-content-center"
+            id="btncheck"
+            fas icon="check"
+            color="success"
             onClick={() => dispatch(completeTask(item.id))}
           >
-            Complete
+            
           </MDBBtn>
+          </div>
+          
           <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
             <MDBModalDialog>
               <MDBModalContent>
                 <MDBModalHeader>
                   <MDBBtn
-                    className="btn-close"
+                    className="btn-close "
                     color="none"
                     size="sm"
                     onClick={munculPopup}
@@ -136,6 +147,8 @@ const Todolist = () => {
             </MDBModalDialog>
           </MDBModal>
         </MDBCard>
+          </div>
+        
          ))}
       </div>
       
