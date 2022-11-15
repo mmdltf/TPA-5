@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <h1 className='d-flex justify-content-center mb-3'>Todo-list</h1>
+        <h1 className='d-flex justify-content-center mb-3'>Apa yang ingin kamu kerjakan hari ini?</h1>
         <Todolist
         
         />
