@@ -53,6 +53,7 @@ const Todolist = () => {
             onChange={Ubahdata}
             type="text"
             name="inputtodo"
+            placeholder="apa kegiatan mu hari ini?"
           />
 
           {/* button tambah */}
